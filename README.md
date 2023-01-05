@@ -37,35 +37,20 @@ There are two ways to go about:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ssnjrthegr8/stremio-gdrive/blob/main/Get%20Token%20and%20CF%20Proxy%20Code.ipynb)
 
-19. Run the cell of the respective method number you chose. Just press the circular play button beside the rectangular box.
+19. Run the cell of the  method number 1. Just press the circular play button beside the rectangular box. select your client-secret.json and follow the url that u receive click and login and authorize then u will be redirected to a error page (http://localhost:1/?state=dhjhvdhvdsu&code=<Copy this>&scope=https://www.googleapis.com/auth/drive, come back to colab tab and entered the copied test in authourization field then u will receive token.
 
-20. Login with your google account. Copy the js code and copy the token string for later when we deploy the heroku backend, the token should look something like this:
+20.copy the token string for later when we deploy the vercel backend, the token should look something like this:
 
 ```json
 {"token": "jhgdfgdhgfh", "refresh_token": "1//sdhgbfdhghd", "token_uri": "https://oauth2.googleapis.com/token", "client_id": "hsdgfjhgfsd.apps.googleusercontent.com", "client_secret": "gfsdfsdgf", "scopes": ["https://www.googleapis.com/auth/drive"]}
 ```
-
-### Skip to [Deploying to heroku](https://github.com/ssnjrthegr8/stremio-gdrive#deploying-to-heroku) if you dont want to use a proxy.
-21. Go to https://dash.cloudflare.com/ log in or sign up.
-22. Open the Workers option.
-23. Create your sub-domain or continue if already done.
-24. Select the Free Plan. Click on Create a Worker. You can rename the workers at top of the page.
-25. In the `Script{}` box you will see some code, delete all that and paste the js code that you obtained in step 18 there.
-
-### Deploying to heroku:
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/ssnjrthegr8/stremio-gdrive.git)
-
-1. Hit the deploy button.
-2. Paste the token string in the token field.
-3. Copy your cloudflare worker url and paste it in the cf proxy url field. Leave it blank to use the addon without the proxy.
-4. Hit deploy.
+21. goto vercel.com create a new project, click import third party repo
 
 ### Installing the addon to your Stremio account:
 
-1. Get the url of the heroku app you deployed. Add `/manifest.json` to the end. For example if my herokuapp url is `https://your-stremiogdrive.herokuapp.com` add `/manifest.json` to the end to get: `https://your-stremiogdrive.herokuapp.com/manifest.json`. Copy this url.
+1. Get the url of the vercel app you deployed. Add `/manifest.json` to the end. For example if my app url is `https://<your app url.vercel.app/' add `/manifest.json` to the end to get: `https://<your app url.vercel.app/manifest.json`. Copy this url.
 2. Open stremio on desktop or android and go to addons section.
-3. In the search bar paste the manifest link (`https://your-stremiogdrive.herokuapp.com/manifest.json`) and press enter. Click install and you are done.
+3. In the search bar paste the manifest link (`https://<your app url.vercel.app/manifest.json`) and press enter. Click install and you are done.
 
 ## How the addon works
 
@@ -91,10 +76,4 @@ The addon searches for:
     * 1x01
     * 1x1
 
-## Issues / Limitations / Explanations
-* Apps hosted on heroku sleeps after 30 mins of inactivity. So after 30 mins of inactivity the addon needs about 30 secs to start back up and then some time to fetch the results. If you use something like [Kaffeine](https://kaffeine.herokuapp.com/) you can overcome this as Kaffeine pings your app every 30 mins. Downside is that you will spend extra dyno hours. Free dynos have about 550 hours of runtime per month which is about 22 days.
-* Google api is not very fast so if you have a ton of results it might take 10 - 15 secs to load.
-* Cloudflare workers is used as a proxy to stream files from google drive since it is really fast.
-* I am an amateur and I did this to the best of my ability. If you find flaws feel free to post an issue.
 
-### **For the sake of security please don't share your herokuapp url or your cloudflare workers proxy url. They can be used to get files from your drive.**
