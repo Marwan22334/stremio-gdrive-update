@@ -70,7 +70,7 @@ class IMDb:
                     if not (title.isdigit() and len(title) < 3):
                         titles.add(title)
 
-            limit = 29  # To "ease" gdrive batch api's suffering
+            limit = 100  # To limit gdrive batch api's suffering
             self.titles += list(titles)[:limit]
 
         if self.titles:
