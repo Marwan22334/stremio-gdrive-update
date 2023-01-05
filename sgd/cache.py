@@ -4,7 +4,7 @@ import pickle
 
 class Cache:
     def __init__(self, filename, filetype):
-        self.filename = filename
+        self.filename = '/tmp/'+filename
         self.filetype = filetype
         self.bin = "b" if filetype is pickle else ""
         try:
