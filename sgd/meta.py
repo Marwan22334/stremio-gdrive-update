@@ -106,7 +106,7 @@ class Meta(IMDb):
         self.ep = 0
         self.se = 0
 
-        self.id_split = stream_id.split(":")
+        self.id_split = stream_id.split("%3A")
         self.type = stream_type
         self.stream_type = stream_type
 
