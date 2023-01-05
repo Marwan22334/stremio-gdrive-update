@@ -29,7 +29,11 @@ class Streams:
                     self.results.append(self.constructed)
 
         self.results.sort(key=self.best_res, reverse=True)
-
+        ''' Remove line 32 and 36 if u don't want 4k results on top
+        storeUHD=[i for i in self.results if  ('2160' in i.name or 'UHD' in i.name)]
+        for i in storeUHD:
+            self.results.append(self.results.pop(self.results.index(i)))
+            '''
     def is_valid_year(self, movie):
         movie_year = str(movie["sortkeys"].get("year", "0"))
         return movie_year == self.strm_meta.year
